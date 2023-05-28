@@ -19,17 +19,14 @@
     </header>
     <h1>Zaloguj się</h1>
     <form action="zaloguj.php" method="post">
-    <p> 
         <label for="log"> Login:</label>
-        <input type="text" name="log">
-    </p>
-    <p>
+        <input type="text" name="log"><br>
+
         <label for="pass"> Hasło:</label>
-        <input type="password" name="pass">
-    </p>
-    <br>
+        <input type="password" name="pass"><br>
+
         <input type="submit" value="Zaloguj">
-</form>
+    </form>
 
 
        

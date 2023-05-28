@@ -58,14 +58,15 @@ label {
 }
 
 input {
-    width: 100%;
-    padding: 10px;
+    width: 90%;
+    padding: 10px 20px;
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 10px;
 }
 
 input[type="submit"] {
+    width: 100%;
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
@@ -76,4 +77,31 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #555;
+}
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    margin: 20px auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
 }
