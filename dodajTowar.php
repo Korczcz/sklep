@@ -24,7 +24,7 @@
             <input type="text" name="jm" required>
         </p>
         <p>
-            <label for="kwota">Kwota produktu</label>
+            <label for="kwota">Cena za jedną jednostkę</label>
             <input type="text" name="kwota" required>
         </p>
         <p>

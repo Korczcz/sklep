@@ -12,7 +12,7 @@ if(isset($_POST['mail'])){
         require_once "database.php";
         //echo $_POST['mail'] . '<br>' . $email;
         $kwerenda = $db->prepare(
-            'INSERT INTO `towary`(`Nazwa`, `Cena`, `Jednostka_miary`, `Mail_producenta`) VALUES ( :vNazwa, :vCena, :vJM, :vMail)');
+            'INSERT INTO `towary`(`towarNazwa`, `towarCena`, `towarJM`, `MailProducenta`) VALUES ( :vNazwa, :vCena, :vJM, :vMail)');
         $kwerenda->bindValue(':vNazwa', $_POST['nazwaP'], PDO::PARAM_STR);
         $kwerenda->bindValue(':vCena', $_POST['kwota'], PDO::PARAM_STR);
         $kwerenda->bindValue(':vJM', $_POST['jm'], PDO::PARAM_STR);
