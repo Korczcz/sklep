@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (isset($_SESSION['zalogowane_id'])){
+  header("Location:zaloguj.php");
+  close();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,0 +1,1 @@
+//'SELECT `zamID`, `zamKlientID`, `zamTowarID`, `zamIlosc` FROM `zamowienieklienta` WHERE `zamKlientID`= :id');

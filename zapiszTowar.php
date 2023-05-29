@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+if (isset($_SESSION['zalogowane_id'])){
+    header("Location:zaloguj.php");
+    close();
+  }
 
 if(isset($_POST['mail'])){
     $email = filter_input(INPUT_POST,'mail',FILTER_VALIDATE_EMAIL);

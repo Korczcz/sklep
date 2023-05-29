@@ -20,8 +20,6 @@
         } else {
             // wpisane błędne hasło
             $_SESSION['bledne_haslo']=true;
-            header("Location:index.php");
-            exit();
         }
        
     } else {
@@ -71,6 +69,23 @@
         . '<td>' . $towar['MailProducenta'] . '</td>'
         . '</tr>';
     }
-    ?>
+    echo '</table>';
+    ?><br>
+    <h1>Złóż zamówienie</h1>
+    <form action="zamowienieZapisz.php" method="post">
+        <label for="towar"> Wybierz towar:</label>
+        <select name="towar">
+            <?php
+                foreach ($daneTowarow as $towar) {
+                    echo '<option value=' . $towar['towarID'] . '>' . $towar['towarNazwa'] . '</option>';
+                }
+            ?>
+        </select><br>
+
+        <label for="ilosc"> Wybierz ilość:</label>
+        <input type="ilosc" name="ilosc" required><br>
+
+        <input type="submit" value="Złóż zamówienie">
+    </form>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +45,7 @@ session_start();
         <input type="text" name="surname" required><br>
 
         <label for="mail"> Mail:</label>
-        <input type="mail" name="mail" required><br>
+        <input type="mail" name="mail" required <?= (isset($_SESSION['wprowadzony_mail']))?'value="' .$_SESSION['wprowadzony_mail'].'"' : '';?>><br>
 
         <input type="submit" value="Zarejestruj się">
     </form>
