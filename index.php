@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +49,12 @@
 
         <input type="submit" value="Zarejestruj się">
     </form>
+    <?php
+        if (isset($_SESSION['wprowadzony_mail'])){
+            echo '<br> Wprowadzono niepoprawny adres email!';
+            unset($_SESSION['wprowadzony_mail']);
+        }
+        ?>
 
        
 </body>

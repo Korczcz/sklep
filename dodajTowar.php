@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +40,7 @@
         <?php
         if (isset($_SESSION['wprowadzony_mail'])){
             echo '<br> Wprowadzono niepoprawny adres email!';
-            ubset($_SESSION['wprowadzony_mail']);
+            unset($_SESSION['wprowadzony_mail']);
         }
         ?>
     
