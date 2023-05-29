@@ -1,34 +1,42 @@
 <?php
     session_start();
-
-    if (isset($_POST['log'])|isset($_POST['pass'])) {
-        $login = filter_input(INPUT_POST, 'log');
-        $password = filter_input(INPUT_POST, 'pass');
-
+    if(!isset($_SESSION['zalogowane_id'])){
+        if (isset($_POST['log'])|isset($_POST['pass'])) {
+            $login = filter_input(INPUT_POST, 'log');
+            $password = filter_input(INPUT_POST, 'pass');
+    
+            require_once("database.php");
+    
+            $klinetKwerenta=$db->prepare(
+                'SELECT `klientID`, `klientHaslo` FROM `klient` WHERE `klientNick`= :login');
+            $klinetKwerenta->bindValue('login', $login, PDO::PARAM_STR);
+            $klinetKwerenta->execute();
+    
+            $klient = $klinetKwerenta->fetch();
+            if ($klient && password_verify($password,$klient['klientHaslo']) ) {
+                // logowanie przeszło pomyślnie
+                $_SESSION['zalogowane_id']=$klient['klientID'];
+                unset($_SESSION['bledne_haslo']);
+            } else {
+                // wpisane błędne hasło
+                $_SESSION['bledne_haslo']=true;
+            }
+           
+        } else {
+            // nie wpisane hasło i/lub login
+            header('Location:index.php');
+            exit();
+        }
+        $daneTowarowKwerenda = $db->query('SELECT * FROM towary');
+        $daneTowarow = $daneTowarowKwerenda->fetchAll();
+      }else{
         require_once("database.php");
 
-        $klinetKwerenta=$db->prepare(
-            'SELECT `klientID`, `klientHaslo` FROM `klient` WHERE `klientNick`= :login');
-        $klinetKwerenta->bindValue('login', $login, PDO::PARAM_STR);
-        $klinetKwerenta->execute();
-
-        $klient = $klinetKwerenta->fetch();
-        if ($klient && password_verify($password,$klient['klientHaslo']) ) {
-            // logowanie przeszło pomyślnie
-            $_SESSION['zalogowane_id']=$klient['klientID'];
-            unset($_SESSION['bledne_haslo']);
-        } else {
-            // wpisane błędne hasło
-            $_SESSION['bledne_haslo']=true;
-        }
-       
-    } else {
-        // nie wpisane hasło i/lub login
-        header('Location:index.php');
-        exit();
-    }
-    $daneTowarowKwerenda = $db->query('SELECT * FROM towary');
-    $daneTowarow = $daneTowarowKwerenda->fetchAll();
+        $daneTowarowKwerenda = $db->query('SELECT * FROM towary');
+        $daneTowarow = $daneTowarowKwerenda->fetchAll();
+      }
+    
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,9 +51,11 @@
     <header>
     <nav>
       <ul>
-        <li><a href="zaloguj.php">Strona główna</a></li>
+        <li><a href="zaloguj.php">Wszystkie towary</a></li>
         <li><a href="index.php">Zaloguj/Zarejestruj się</a></li>
-        <li><a href="dodajTowar.php">Dodaj Towar</a></li>
+        <li><a href="dodajTowar.php">Towar</a></li>
+        <li><a href="zlozZamowienie.php">Złóż Zamowienie</a></li>
+        <li><a href="zamowienie.php">Zamowienie</a></li>
       </ul>
     </nav>
     </header>
@@ -70,22 +80,6 @@
         . '</tr>';
     }
     echo '</table>';
-    ?><br>
-    <h1>Złóż zamówienie</h1>
-    <form action="zamowienieZapisz.php" method="post">
-        <label for="towar"> Wybierz towar:</label>
-        <select name="towar">
-            <?php
-                foreach ($daneTowarow as $towar) {
-                    echo '<option value=' . $towar['towarID'] . '>' . $towar['towarNazwa'] . '</option>';
-                }
-            ?>
-        </select><br>
-
-        <label for="ilosc"> Wybierz ilość:</label>
-        <input type="ilosc" name="ilosc" required><br>
-
-        <input type="submit" value="Złóż zamówienie">
-    </form>
+    ?>
 </body>
 </html>

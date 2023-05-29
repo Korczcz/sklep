@@ -14,9 +14,11 @@
     <header>
     <nav>
       <ul>
-        <li><a href="zaloguj.php">Strona główna</a></li>
+        <li><a href="zaloguj.php">Wszystkie towary</a></li>
         <li><a href="index.php">Zaloguj/Zarejestruj się</a></li>
-        <li><a href="dodajTowar.php">Dodaj Towar</a></li>
+        <li><a href="dodajTowar.php">Towar</a></li>
+        <li><a href="zlozZamowienie.php">Złóż Zamowienie</a></li>
+        <li><a href="zamowienie.php">Zamowienie</a></li>
       </ul>
     </nav>
     </header>
