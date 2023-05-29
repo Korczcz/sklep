@@ -12,4 +12,4 @@ sprawdzenie czy towary są na stanie
 wyświetlanie danych zamówienia wraz z zamówionymi towarami przez klienta (przykładowa faktura w html) x
 możliwość aktualizacji i usuwania konta klienta
 
-dodanie sprawdzania logowania i wylogowywania
+dodanie sprawdzania logowania i wylogowywania x

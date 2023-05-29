@@ -26,6 +26,7 @@ if (!isset($_SESSION['zalogowane_id'])){
         <li><a href="dodajTowar.php">Towar</a></li>
         <li><a href="zlozZamowienie.php">Złóż Zamowienie</a></li>
         <li><a href="zamowienie.php">Zamowienie</a></li>
+        <li><a href="konto.php">Ustawienia konta</a></li>
         <li><a href="wyloguj.php">Wyloguj się</a></li>
       </ul>
     </nav>

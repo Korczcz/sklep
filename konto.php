@@ -1,9 +1,9 @@
 <?php
 session_start();
 if (!isset($_SESSION['zalogowane_id'])){
-  header("Location:zaloguj.php");
-  close();
-}
+    header("Location:zaloguj.php");
+    close();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@ if (!isset($_SESSION['zalogowane_id'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dodaj towar</title>
+    <title>Document</title>
 </head>
 <body>
     <header>
@@ -25,33 +25,33 @@ if (!isset($_SESSION['zalogowane_id'])){
         <li><a href="zamowienie.php">Zamowienie</a></li>
         <li><a href="konto.php">Ustawienia konta</a></li>
         <li><a href="wyloguj.php">Wyloguj się</a></li>
-        
       </ul>
     </nav>
     </header>
+    <h1>Zmień informacje</h1>
+    <form action="rejestracja.php" method="post">
+        <label for="log"> Login:</label>
+        <input type="text" name="log" required><br>
 
-    <h1>Dodaj towar do bazy danych</h1>
-    <form action="zapiszTowar.php" method="post">
-        <label for="nazwaP">Nazwa produktu</label>
-        <input type="text" name="nazwaP" required><br>
+        <label for="pass"> Hasło:</label>
+        <input type="password" name="pass" required><br>
 
-        <label for="jm">Jednostka miary</label>
-        <input type="text" name="jm" required><br>
+        <label for="name"> Imie:</label>
+        <input type="text" name="name" required><br>
 
-        <label for="kwota">Cena za jedną jednostkę</label>
-        <input type="text" name="kwota" required><br>
+        <label for="surname"> Nazwisko:</label>
+        <input type="text" name="surname" required><br>
 
-        <label for="mail">E-mail do producenta</label>
-        <input type="text" name="mail" required<?= (isset($_SESSION['wprowadzony_mail']))?'value="' .$_SESSION['wprowadzony_mail'].'"' : '';?>><br>
-        
-        <input type="submit" value="Dodaj towar">
+        <label for="mail"> Mail:</label>
+        <input type="mail" name="mail" required <?= (isset($_SESSION['wprowadzony_mail']))?'value="' .$_SESSION['wprowadzony_mail'].'"' : '';?>><br>
+
+        <input type="submit" value="Zmień dane">
     </form>
-        <?php
+    <?php
         if (isset($_SESSION['wprowadzony_mail'])){
             echo '<br> Wprowadzono niepoprawny adres email!';
             unset($_SESSION['wprowadzony_mail']);
         }
         ?>
-    
 </body>
 </html>
