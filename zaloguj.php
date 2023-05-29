@@ -46,7 +46,7 @@
     <nav>
       <ul>
         <li><a href="zaloguj.php">Strona główna</a></li>
-        <li><a href="index.php">Zaloguj się</a></li>
+        <li><a href="index.php">Zaloguj/Zarejestruj się</a></li>
         <li><a href="dodajTowar.php">Dodaj Towar</a></li>
       </ul>
     </nav>
