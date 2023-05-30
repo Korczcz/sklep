@@ -13,4 +13,4 @@ wyświetlanie danych zamówienia wraz z zamówionymi towarami przez klienta (prz
 możliwość aktualizacji i usuwania konta klienta x
 
 dodanie sprawdzania logowania i wylogowywania x
-naprawienie sprawdzania logowania w zaloguj.php
+naprawienie sprawdzania logowania w zaloguj.php x

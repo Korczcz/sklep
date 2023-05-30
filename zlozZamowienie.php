@@ -4,13 +4,11 @@ if (!isset($_SESSION['zalogowane_id'])){
     header("Location:zaloguj.php");
     close();
   }
-    require_once("database.php");
-    $daneTowarowKwerenda = $db->query('SELECT * FROM towary');
-    $daneTowarow = $daneTowarowKwerenda->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,12 +16,19 @@ if (!isset($_SESSION['zalogowane_id'])){
     <title>Document</title>
 </head>
 <body>
+    <?php 
+        require_once("database.php");
+        $daneTowarowKwerenda = $db->query('SELECT * FROM towary WHERE towarIloscNaStanie > 0');
+        $daneTowarow = $daneTowarowKwerenda->fetchAll();
+        $daneIloscKwerenda = $db->query('SELECT `towarIloscNaStanie` FROM towary WHERE towarIloscNaStanie > 0');
+        $daneIlosc = $daneIloscKwerenda->fetch();
+    ?>
     <header>
     <nav>
       <ul>
         <li><a href="zaloguj.php">Wszystkie towary</a></li>
         <li><a href="index.php">Zaloguj/Zarejestruj się</a></li>
-        <li><a href="dodajTowar.php">Towar</a></li>
+        <li><a href="dodajTowar.php">Dodaj Towar</a></li>
         <li><a href="zlozZamowienie.php">Złóż Zamowienie</a></li>
         <li><a href="zamowienie.php">Zamowienie</a></li>
         <li><a href="konto.php">Ustawienia konta</a></li>
@@ -31,7 +36,6 @@ if (!isset($_SESSION['zalogowane_id'])){
       </ul>
     </nav>
     </header>
-
 <h1>Złóż zamówienie</h1>
     <form action="zamowienieZapisz.php" method="post">
         <label for="towar"> Wybierz towar:</label>
@@ -41,10 +45,12 @@ if (!isset($_SESSION['zalogowane_id'])){
                     echo '<option value=' . $towar['towarID'] . '>' . $towar['towarNazwa'] . '</option>';
                 }
             ?>
-        </select><br>
+        </select><br><br>
 
-        <label for="ilosc"> Wybierz ilość:</label>
-        <input type="ilosc" name="ilosc" required><br>
+        <label for="ilosc"> Wybierz ilość: <output id='output'>0</output></label>
+        <input type="range" name="ilosc" value="0"; min="1" max="<?php echo $daneIlosc['towarIloscNaStanie'] ?>" oninput="document.getElementById('output').value = this.value" required>
+        <br>
+        
 
         <input type="submit" value="Złóż zamówienie">
     </form>

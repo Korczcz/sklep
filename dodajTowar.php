@@ -20,7 +20,7 @@ if (!isset($_SESSION['zalogowane_id'])){
       <ul>
         <li><a href="zaloguj.php">Wszystkie towary</a></li>
         <li><a href="index.php">Zaloguj/Zarejestruj się</a></li>
-        <li><a href="dodajTowar.php">Towar</a></li>
+        <li><a href="dodajTowar.php">Dodaj Towar</a></li>
         <li><a href="zlozZamowienie.php">Złóż Zamowienie</a></li>
         <li><a href="zamowienie.php">Zamowienie</a></li>
         <li><a href="konto.php">Ustawienia konta</a></li>
@@ -39,11 +39,14 @@ if (!isset($_SESSION['zalogowane_id'])){
         <input type="text" name="jm" required><br>
 
         <label for="kwota">Cena za jedną jednostkę</label>
-        <input type="text" name="kwota" required><br>
+        <input type="number" name="kwota" required><br>
 
         <label for="mail">E-mail do producenta</label>
         <input type="text" name="mail" required<?= (isset($_SESSION['wprowadzony_mail']))?'value="' .$_SESSION['wprowadzony_mail'].'"' : '';?>><br>
         
+        <label for="ilosc">Ilość na stanie</label>
+        <input type="number" name="ilosc" required><br>
+
         <input type="submit" value="Dodaj towar">
     </form>
         <?php

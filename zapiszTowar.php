@@ -16,11 +16,12 @@ if(isset($_POST['mail'])){
         require_once "database.php";
         //echo $_POST['mail'] . '<br>' . $email;
         $kwerenda = $db->prepare(
-            'INSERT INTO `towary`(`towarNazwa`, `towarCena`, `towarJM`, `MailProducenta`) VALUES ( :vNazwa, :vCena, :vJM, :vMail)');
+            'INSERT INTO `towary`(`towarNazwa`, `towarCena`, `towarJM`, `MailProducenta`, `towarIloscNaStanie`) VALUES ( :vNazwa, :vCena, :vJM, :vMail, :vIlosc)');
         $kwerenda->bindValue(':vNazwa', $_POST['nazwaP'], PDO::PARAM_STR);
         $kwerenda->bindValue(':vCena', $_POST['kwota'], PDO::PARAM_STR);
         $kwerenda->bindValue(':vJM', $_POST['jm'], PDO::PARAM_STR);
         $kwerenda->bindValue(':vMail', $email, PDO::PARAM_STR);
+        $kwerenda->bindValue(':vIlosc', $_POST['ilosc'], PDO::PARAM_STR);
         $kwerenda->execute();
         echo 'Dane zostały dodane do bazy danych';
     }
