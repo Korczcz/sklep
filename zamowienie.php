@@ -5,7 +5,6 @@ if (!isset($_SESSION['zalogowane_id'])){
     close();
   }
   require_once("database.php");
-
   $zamowienieKwerenta=$db->prepare(
     'SELECT `zamowienieklienta`.`zamID`,`towary`.`towarNazwa`, `zamowienieklienta`.`zamIlosc`, `towary`.`towarCena`*`zamowienieklienta`.`zamIlosc` AS Suma FROM `zamowienieklienta` JOIN `towary` ON `zamowienieklienta`.`zamTowarID` = `towary`.`towarID` WHERE `zamowienieklienta`.`zamKlientID` = :vid');
     $zamowienieKwerenta->bindValue('vid', $_SESSION['zalogowane_id'], PDO::PARAM_STR);

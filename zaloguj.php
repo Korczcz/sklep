@@ -1,6 +1,5 @@
 <?php
     session_start();
-    if(!isset($_SESSION['zalogowane_id'])){
         if (isset($_POST['log'])|isset($_POST['pass'])) {
             $login = filter_input(INPUT_POST, 'log');
             $password = filter_input(INPUT_POST, 'pass');
@@ -29,12 +28,6 @@
         }
         $daneTowarowKwerenda = $db->query('SELECT * FROM towary');
         $daneTowarow = $daneTowarowKwerenda->fetchAll();
-      }else{
-        require_once("database.php");
-
-        $daneTowarowKwerenda = $db->query('SELECT * FROM towary');
-        $daneTowarow = $daneTowarowKwerenda->fetchAll();
-      }
     
     
 ?>
