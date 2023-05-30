@@ -23,8 +23,7 @@ if (!isset($_SESSION['zalogowane_id'])){
         $daneIloscKwerenda->bindValue(':vNazwa', $_POST['towar'], PDO::PARAM_STR);
         $daneIloscKwerenda->execute();
         $daneIlosc = $daneIloscKwerenda->fetch();
-        echo $daneIlosc['towarIloscNaStanie'];
-
+        
         $_SESSION['towar']=$_POST['towar'];
     ?>
     <header>
