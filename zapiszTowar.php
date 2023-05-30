@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (isset($_SESSION['zalogowane_id'])){
+if (!isset($_SESSION['zalogowane_id'])){
     header("Location:zaloguj.php");
     close();
   }
@@ -23,7 +23,8 @@ if(isset($_POST['mail'])){
         $kwerenda->bindValue(':vMail', $email, PDO::PARAM_STR);
         $kwerenda->bindValue(':vIlosc', $_POST['ilosc'], PDO::PARAM_STR);
         $kwerenda->execute();
-        echo 'Dane zostały dodane do bazy danych';
+        header("Location:dodajTowar.php");
+    exit();
     }
 } else{
     header("Location:dodajTowar.php");

@@ -18,8 +18,14 @@ if (!isset($_SESSION['zalogowane_id'])){
 <body>
     <?php 
         require_once("database.php");
-        $daneTowarowKwerenda = $db->query('SELECT * FROM towary WHERE towarIloscNaStanie > 0');
-        $daneTowarow = $daneTowarowKwerenda->fetchAll();
+        
+        $daneIloscKwerenda = $db->prepare('SELECT `towarIloscNaStanie` FROM `towary` WHERE `towarIloscNaStanie` > 0 AND `towarID` = :vNazwa ');
+        $daneIloscKwerenda->bindValue(':vNazwa', $_POST['towar'], PDO::PARAM_STR);
+        $daneIloscKwerenda->execute();
+        $daneIlosc = $daneIloscKwerenda->fetch();
+        echo $daneIlosc['towarIloscNaStanie'];
+
+        $_SESSION['towar']=$_POST['towar'];
     ?>
     <header>
     <nav>
@@ -35,16 +41,11 @@ if (!isset($_SESSION['zalogowane_id'])){
     </nav>
     </header>
 <h1>Złóż zamówienie</h1>
-    <form action="wybierzIlosc.php" method="post">
-        <label for="towar"> Wybierz towar:</label>
-        <select name="towar">
-            <?php
-                foreach ($daneTowarow as $towar) {
-                    echo '<option value=' . $towar['towarID'] . '>' . $towar['towarNazwa'] . '</option>';
-                }
-            ?>
-        </select><br><br>
-
+    <form action="zamowienieZapisz.php" method="post">
+        <label for="ilosc"> Wybierz ilość: <output id='output'>0</output></label>
+        <input type="range" name="ilosc" value="0"; min="0" max="<?php echo $daneIlosc['towarIloscNaStanie'] ?>" oninput="document.getElementById('output').value = this.value" required>
+        <br>
+        
         <input type="submit" value="Złóż zamówienie">
     </form>
 </body>
